@@ -13,7 +13,10 @@ presidents = ["washington", "adams", "jefferson", "madison", "monroe",
 def test_ddg0():
     resp = requests.get(url_ddg + "/?q=presidents of the united states&format=json")
     rsp_data = resp.json()
+    topics = rsp_data["RelatedTopics"]
     foundPresidents = 0
-    for president in presidents:
-        assert president in rsp_data["RelatedTopics"].lower()
+    for i in range(len(presidents)):
+        topic = topics[i]
+        if presidents[i] in topic['Text'].lower():
+            foundPresidents += 1
     assert foundPresidents == len(presidents)
