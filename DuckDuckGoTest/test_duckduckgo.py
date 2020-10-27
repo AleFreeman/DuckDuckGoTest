@@ -16,7 +16,8 @@ def test_ddg0():
     topics = rsp_data["RelatedTopics"]
     foundPresidents = 0
     for i in range(len(presidents)):
-        topic = topics[i]
-        if presidents[i] in topic['Text'].lower():
-            foundPresidents += 1
+        for topic in topics:
+            if presidents[i] in topic['Text'].lower():
+                foundPresidents += 1
+                break
     assert foundPresidents == len(presidents)
