@@ -15,5 +15,5 @@ def test_ddg0():
     rsp_data = resp.json()
     foundPresidents = 0
     for president in presidents:
-        assert president in rsp_data["RelatedTopics"]
+        assert president in rsp_data["RelatedTopics"].lower()
     assert foundPresidents == len(presidents)
